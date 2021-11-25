@@ -8,7 +8,8 @@ LPWSTR ClipboardOutputText();
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
 {
 	while (TRUE)
-	{
+	{	
+		
 		LPSTR Data = ClipboardOutputText();	
 		TCHAR Alert[] = L"Вы нарушили АВТОРСКИЕ ПРАВА, скопировав следующий текст: ";		
 		TCHAR third[512];
