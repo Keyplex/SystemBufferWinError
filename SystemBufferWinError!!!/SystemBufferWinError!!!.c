@@ -40,7 +40,6 @@ int ClipboardInputText(LPWSTR buffer)
 	DWORD len;
 	HANDLE hMem;
 	len = wcslen(buffer) + 1; // определние длины строки в формате юникода
-
 	hMem = GlobalAlloc(GMEM_MOVEABLE, len * sizeof(LPWSTR)); // выделение памяти в глобальной области видимости
 	memcpy(GlobalLock(hMem), buffer, len * sizeof(LPWSTR)); // копирование области памяти из buffer в hMem
 	GlobalUnlock(hMem); // разблокировать содержимое этой памяти (сделать доступным для других программ)
