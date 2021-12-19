@@ -14,8 +14,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine
 		LPSTR Data = ClipboardOutputText();			
 		TCHAR Alert[] = L"Вы нарушили АВТОРСКИЕ ПРАВА, скопировав следующий текст: ";		
 		TCHAR third[512];
-		swprintf(third, sizeof third, L"%s%s", Alert, Data);
-		
+		swprintf(third, sizeof third, L"%s%s", Alert, Data);		
 		if (*Data != 0)
 		{
 			MessageBoxW(NULL, &third, L"Внимание!!! Нарушение!!!", MB_OK | MB_ICONWARNING);
