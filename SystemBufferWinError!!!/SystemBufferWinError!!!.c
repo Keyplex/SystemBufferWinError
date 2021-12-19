@@ -1,23 +1,32 @@
 ﻿#define _CRT_SERUCE_NO_WARNINGS
 #include <Windows.h>
 #include <stdio.h>
+#include <locale.h>
 //#include <strsafe.h>
 
 LPWSTR ClipboardOutputText();
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
-{
+{	
 	while (TRUE)
 	{	
+		setlocale(LC_ALL, "Russian");
+		 const char* a[] = { "Ноль" ,"Один", "Два", "Три" };
+		//printf("%s %s %s %s \n", a[0], a[1], a[2], a[3]); 
 		
+		 
+		 //считал из буфера в переменную data
 		LPSTR Data = ClipboardOutputText();	
+		// теперь нужно поменять переменную data
+		
 		TCHAR Alert[] = L"Вы нарушили АВТОРСКИЕ ПРАВА, скопировав следующий текст: ";		
 		TCHAR third[512];
 		swprintf(third, sizeof third, L"%s%s", Alert, Data);
+		
 		if (*Data != 0)
 		{
 			MessageBoxW(NULL, &third, L"Внимание!!! Нарушение!!!", MB_OK | MB_ICONWARNING);
-			ClipboardOutputText("");
+			ClipboardOutputText("1");
 		}			
 		Sleep(1000);
 	}
@@ -84,7 +93,6 @@ int ClipboardInputText(LPWSTR buffer)
 	DWORD len;
 	HANDLE hMem;
 	len = wcslen(buffer) + 1; // определние длины строки в формате юникода
-
 	hMem = GlobalAlloc(GMEM_MOVEABLE, len * sizeof(LPWSTR)); // выделение памяти в глобальной области видимости
 	memcpy(GlobalLock(hMem), buffer, len * sizeof(LPWSTR)); // копирование области памяти из buffer в hMem
 	GlobalUnlock(hMem); // разблокировать содержимое этой памяти (сделать доступным для других программ)
