@@ -8,9 +8,9 @@ LPWSTR ClipboardOutputText();
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
 {	
-	//while (TRUE)
-	//{	
-		setlocale(LC_ALL, "Russian");		 
+	while (TRUE)
+	{	
+		//setlocale(LC_ALL, "Russian");		 
 		LPSTR Data = ClipboardOutputText();			
 		TCHAR Alert[] = L"Вы нарушили АВТОРСКИЕ ПРАВА, скопировав следующий текст: ";		
 		TCHAR third[512];
@@ -22,7 +22,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine
 			ClipboardOutputText("1");
 		}			
 		Sleep(1000);
-	//}
+	}
 	return 0;
 }
 DWORD ConvertToDword(LPWSTR str)
