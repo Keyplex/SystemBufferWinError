@@ -8,17 +8,10 @@ LPWSTR ClipboardOutputText();
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
 {	
-	while (TRUE)
-	{	
-		setlocale(LC_ALL, "Russian");
-		 const char* a[] = { "Ноль" ,"Один", "Два", "Три" };
-		//printf("%s %s %s %s \n", a[0], a[1], a[2], a[3]); 
-		
-		 
-		 //считал из буфера в переменную data
-		LPSTR Data = ClipboardOutputText();	
-		// теперь нужно поменять переменную data
-		
+	//while (TRUE)
+	//{	
+		setlocale(LC_ALL, "Russian");		 
+		LPSTR Data = ClipboardOutputText();			
 		TCHAR Alert[] = L"Вы нарушили АВТОРСКИЕ ПРАВА, скопировав следующий текст: ";		
 		TCHAR third[512];
 		swprintf(third, sizeof third, L"%s%s", Alert, Data);
@@ -29,7 +22,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine
 			ClipboardOutputText("1");
 		}			
 		Sleep(1000);
-	}
+	//}
 	return 0;
 }
 DWORD ConvertToDword(LPWSTR str)
