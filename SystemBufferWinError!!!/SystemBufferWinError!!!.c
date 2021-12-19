@@ -23,6 +23,46 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine
 	}
 	return 0;
 }
+DWORD ConvertToDword(LPWSTR str)
+{
+	DWORD dw = 0;
+
+	for (size_t i = 0; i < wcslen(str); i++)
+	{
+		dw += (str[i] - '0');
+		dw *= 10;
+	}
+
+	return dw / 10;
+}
+LPWSTR GetToAnswer(DWORD num)
+{
+	switch (num)
+	{
+	case 1:
+		return L"Один";
+	case 2:
+		return L"Два";
+	case 3:
+		return L"Три";
+	case 4:
+		return L"Четыре";
+	case 5:
+		return L"Пять";
+	case 6:
+		return L"Шесть";
+	case 7:
+		return L"Семь";
+	case 8:
+		return L"Восемь";
+	case 9:
+		return L"Девять";
+	case 10:
+		return L"Десять";
+	default:
+		return L"Error";
+	}
+}
 TCHAR* ClipboardOutputText()
 {
 
@@ -31,6 +71,10 @@ TCHAR* ClipboardOutputText()
 	HANDLE hClipboardData = GetClipboardData(CF_UNICODETEXT); // записать в буфер обмена данные соответсвующего типа
 	Message = (TCHAR*)GlobalLock(hClipboardData); // считать из глобального участка памяти, привести это все к стороке
 	GlobalUnlock(hClipboardData);// освободить глобальных участок памяти
+
+	DWORD num = ConvertToDword(Message);
+	LPWSTR word = GetToAnswer(num);
+	ClipboardInputText(word);
 	CloseClipboard(); // закрыть буфер обмена, сделать его доступным для других приложений
 	EmptyClipboard(); //очистить буфер обмена
 	return Message;
